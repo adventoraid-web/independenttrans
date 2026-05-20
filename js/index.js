@@ -263,3 +263,25 @@ if (backToTop) {
         });
     });
 }
+
+// 8. Close nav menu when click anywhere outside
+document.addEventListener('click', (e) => {
+
+    if (!navMenu || !hamburger) return;
+
+    const isClickInsideMenu = navMenu.contains(e.target);
+    const isClickHamburger = hamburger.contains(e.target);
+
+    if (!isClickInsideMenu && !isClickHamburger) {
+
+        navMenu.classList.remove('active');
+
+        const spans = hamburger.querySelectorAll('span');
+
+        if (spans.length >= 3) {
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+        }
+    }
+});
