@@ -639,21 +639,23 @@
             }
 
             const formattedDate = date.split('-').reverse().join('/');
-            const adminPhoneNumber = "6289669526911";
+            const adminPhoneNumber = "6282132993003";
 
             const messageText = 
 `Hi Independent, ini form booking saya mohon bantu konfirmasi lanjutannya ya, terimakasih.
 
-Nama: ${name}
-Alamat Jemput: ${pickup}
-Alamat Tujuan: ${destination}
-Tanggal: ${formattedDate}
-Jam Penjemputan: ${time} WIB
-Jumlah Penumpang: ${passengers} Orang
-Jumlah Barang: ${luggage}
-Seat: ${seat}
-Catatan: ${notes}
-Share Lokasi: ${userLocationString}`;
+👤 Nama: ${name}
+📍 Jemput: ${pickup}
+🎯 Tujuan: ${destination}
+📅 Tanggal: ${formattedDate}
+⏰ Jam: ${time} WIB
+👥 Penumpang: ${passengers}
+🧳 Barang: ${luggage}
+💺 Seat: ${seat}
+📝 Catatan: ${notes}
+
+📍 Lokasi: ${userLocationString}
+   www.indepndenttrans.web.id`;
 
             const encodedMessage = encodeURIComponent(messageText);
             const whatsappUrl = `https://api.whatsapp.com/send?phone=${adminPhoneNumber}&text=${encodedMessage}`;
