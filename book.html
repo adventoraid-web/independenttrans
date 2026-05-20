@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Booking Independent Trans - Premium Travel Service</title>
+    <meta name="description" content="Formulir booking online resmi Independent Travel. Isi data perjalanan Anda dengan lengkap dan kirim langsung ke admin kami untuk konfirmasi cepat.">
+    <meta name="keywords" content="Independent Travel, Booking Travel, Travel Premium, Sewa Mobil, Travel Eksklusif">
+    <link rel="canonical" href="https://www.independent.web.id">
+    
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- ROOT VARIABLES & RESET --- */
+        :root {
+            --primary-color: #0a192f;
+            --secondary-color: #172a45;
+            --accent-color: #d4af37; /* Gold */
+            --accent-hover: #b8962e;
+            --text-light: #f8f9fa;
+            --text-dark: #333333;
+            --text-muted: #a8b2d1;
+            --glass-bg: rgba(255, 255, 255, 0.06);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-focus: rgba(212, 175, 55, 0.2);
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* --- BACKGROUND DECORATION --- */
+        .bg-glow {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(214,175,55,0.08) 0%, rgba(10,25,47,0) 70%);
+            top: -10%;
+            right: -10%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .bg-glow-2 {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(23,42,69,0.5) 0%, rgba(10,25,47,0) 70%);
+            bottom: -10%;
+            left: -10%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-decoration: none;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+            border-bottom: 1px solid transparent;
+            padding-bottom: 4px;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--accent-color);
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* --- BOOKING CONTAINER & GLASSMORPHISM --- */
+        .booking-container {
+            max-width: 750px;
+            width: 90%;
+            margin: 0 auto 80px auto;
+            animation: slideUp 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- FORM STYLING --- */
+        .booking-form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-color);
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 15px;
+            color: var(--text-muted);
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 15px 14px 45px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            outline: none;
+        }
+
+        textarea.form-control {
+            padding-left: 15px;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-color);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 10px var(--glass-focus);
+        }
+
+        .form-control:focus + i {
+            color: var(--accent-color);
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator,
+        input[type="time"]::-webkit-calendar-picker-indicator {
+            filter: invert(1) sepia(100%) saturate(1000%) hue-rotate(10deg);
+            cursor: pointer;
+        }
+
+        select.form-control {
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .select-wrapper::after {
+            content: '\f107';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 15px;
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+
+        /* --- BUTTONS STYLING --- */
+        .btn-location {
+            background: transparent;
+            border: 1px dashed var(--accent-color);
+            color: var(--accent-color);
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition-smooth);
+            width: 100%;
+        }
+
+        .btn-location:hover {
+            background: var(--glass-focus);
+            color: var(--text-light);
+            border-style: solid;
+        }
+
+        .btn-location.success {
+            border-color: #2ec4b6;
+            color: #2ec4b6;
+            background: rgba(46, 196, 182, 0.1);
+        }
+
+        .btn-submit {
+            grid-column: span 2;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%);
+            color: var(--primary-color);
+            border: none;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(214, 175, 55, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px rgba(214, 175, 55, 0.3);
+        }
+
+        /* --- PREMIUM INFO ALERT BOX --- */
+        .info-alert-box {
+            grid-column: span 2;
+            margin-top: 15px;
+            background: rgba(214, 175, 55, 0.05);
+            border-left: 4px solid var(--accent-color);
+            border-right: 1px solid rgba(214, 175, 55, 0.15);
+            border-top: 1px solid rgba(214, 175, 55, 0.15);
+            border-bottom: 1px solid rgba(214, 175, 55, 0.15);
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+        }
+
+        .info-alert-box i {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin-top: 2px;
+            text-shadow: 0 0 10px rgba(214, 175, 55, 0.4);
+        }
+
+        .info-alert-content {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .info-alert-content h4 {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .info-alert-content p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* --- LOADING ANIMATION --- */
+        .spinner {
+            display: none;
+            width: 22px;
+            height: 22px;
+            border: 3px solid rgba(10, 25, 47, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            margin-top: auto;
+            background: #06101e;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+        }
+
+        footer a:hover {
+            color: var(--text-light);
+        }
+
+        /* --- ANIMATIONS KEYFRAMES --- */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 768px) {
+            .booking-form {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .full-width, .btn-submit, .info-alert-box {
+                grid-column: span 1;
+            }
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+            .glass-card {
+                padding: 25px 20px;
+            }
+            header {
+                justify-content: center;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .info-alert-box {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+    <div class="bg-glow-2"></div>
+
+    <!-- Header / Navbar -->
+    <header>
+        <a href="#" class="logo">
+            <i class="fa-solid fa-plane-departure"></i> Independent <span>Trans</span>
+        </a>
+        <a href="https://www.independent.web.id" target="_blank" class="nav-link">www.independent.web.id</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Form Booking <span>Independent Trans</span></h1>
+        <p>Isi data perjalanan Anda dengan lengkap lalu kirim langsung ke admin kami.</p>
+    </section>
+
+    <!-- Main Booking Form Container -->
+    <main class="booking-container">
+        <div class="glass-card">
+            <form id="bookingForm" class="booking-form" onsubmit="handleFormSubmit(event)">
+                
+                <!-- 1. Nama Lengkap -->
+                <div class="form-group full-width">
+                    <label for="fullName">Nama Lengkap</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="fullName" class="form-control" placeholder="Masukkan nama sesuai KTP/ID" required>
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                </div>
+
+                <!-- 2. Alamat Jemput -->
+                <div class="form-group full-width">
+                    <label for="pickupAddress">Alamat Jemput</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="pickupAddress" class="form-control" placeholder="Nama jalan, nomor rumah, kota/kecamatan" required>
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                </div>
+
+                <!-- 3. Alamat Tujuan -->
+                <div class="form-group full-width">
+                    <label for="destinationAddress">Alamat Tujuan</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="destinationAddress" class="form-control" placeholder="Destinasi akhir atau alamat tujuan drop" required>
+                        <i class="fa-solid fa-location-arrow"></i>
+                    </div>
+                </div>
+
+                <!-- 4. Tanggal Keberangkatan -->
+                <div class="form-group">
+                    <label for="departureDate">Tanggal Keberangkatan</label>
+                    <div class="input-wrapper">
+                        <input type="date" id="departureDate" class="form-control" required>
+                        <i class="fa-solid fa-calendar-days"></i>
+                    </div>
+                </div>
+
+                <!-- 5. Jam Penjemputan -->
+                <div class="form-group">
+                    <label for="pickupTime">Jam Penjemputan</label>
+                    <div class="input-wrapper">
+                        <input type="time" id="pickupTime" class="form-control" required>
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                </div>
+
+                <!-- 6. Jumlah Penumpang -->
+                <div class="form-group">
+                    <label for="passengerCount">Jumlah Penumpang</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="passengerCount" class="form-control" min="1" placeholder="Contoh: 2" required>
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                </div>
+
+                <!-- 7. Jumlah Barang Bawaan -->
+                <div class="form-group">
+                    <label for="luggageCount">Jumlah Barang Bawaan</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="luggageCount" class="form-control" placeholder="Contoh: 2 Koper, 1 Kardus" required>
+                        <i class="fa-solid fa-suitcase-rolling"></i>
+                    </div>
+                </div>
+
+                <!-- 8. Pilihan Seat -->
+                <div class="form-group full-width">
+                    <label for="seatPreference">Pilihan Seat (Posisi Kursi)</label>
+                    <div class="input-wrapper select-wrapper">
+                        <select id="seatPreference" class="form-control" required>
+                            <option value="" disabled selected hidden>Pilih Posisi Kursi Nyaman Anda</option>
+                            <option value="Depan">Depan</option>
+                            <option value="Tengah">Tengah</option>
+                            <option value="Belakang">Belakang</option>
+                        </select>
+                        <i class="fa-solid fa-chair"></i>
+                    </div>
+                </div>
+
+                <!-- Fitur Share Lokasi (Geolocation API) -->
+                <div class="form-group full-width">
+                    <label>Verifikasi Lokasi Realtime</label>
+                    <button type="button" id="locationBtn" class="btn-location" onclick="getLocation()">
+                        <i class="fa-solid fa-share-nodes"></i> <span id="locationBtnText">Bagikan Share Lokasi</span>
+                    </button>
+                    <input type="hidden" id="locationCoords" value="Tidak dibagikan">
+                </div>
+
+                <!-- 9. Catatan Permintaan Tambahan -->
+                <div class="form-group full-width">
+                    <label for="additionalNotes">Catatan Permintaan Tambahan</label>
+                    <textarea id="additionalNotes" class="form-control" placeholder="Tulis catatan opsional Anda di sini (misal: jemput dekat Indomaret, bawa anak kecil, dll)"></textarea>
+                </div>
+
+                <!-- Tombol Submit Utama -->
+                <button type="submit" id="submitBtn" class="btn-submit">
+                    <span>Kirim Booking ke Admin</span>
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <div class="spinner" id="btnSpinner"></div>
+                </button>
+
+                <!-- Section Catatan Informasi Pelanggan (Premium Alert Box) -->
+                <div class="info-alert-box">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <div class="info-alert-content">
+                        <h4>INFORMASI PENTING KEBERANGKATAN</h4>
+                        <p>Admin akan mengirim nomor driver yang bertugas sebelum keberangkatan. Driver kami akan melakukan konfirmasi penjemputan. Mohon standby agar proses penjemputan berjalan lancar. Jika terdapat keterlambatan ataupun driver datang lebih cepat, driver akan menghubungi penumpang terlebih dahulu.</p>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 <strong>Independent Travel</strong>. All rights reserved.</p>
+        <p><a href="https://www.independent.web.id" target="_blank">www.independent.web.id</a></p>
+    </footer>
+
+    <!-- JavaScript Internal logic -->
+    <script>
+        let userLocationString = "Tidak dibagikan";
+
+        function getLocation() {
+            const btn = document.getElementById('locationBtn');
+            const btnText = document.getElementById('locationBtnText');
+            
+            if (navigator.geolocation) {
+                btnText.innerText = "Mengakses GPS...";
+                
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        userLocationString = `https://www.google.com/maps?q=${latitude},${longitude}`;
+                        document.getElementById('locationCoords').value = userLocationString;
+                        
+                        btn.classList.add('success');
+                        btnText.innerText = "Lokasi Berhasil Disematkan! ✓";
+                        btn.style.pointerEvents = "none";
+                    },
+                    function(error) {
+                        btnText.innerText = "Gagal mengambil lokasi. Masukkan manual di catatan.";
+                        console.error("Geolocation Error: ", error);
+                        alert("Gagal mendeteksi lokasi otomatis. Mohon pastikan fitur GPS aktif atau ketik detail penjemputan di kolom catatan.");
+                    },
+                    { enableHighAccuracy: true, timeout: 10000 }
+                );
+            } else {
+                alert("Browser Anda tidak mendukung deteksi lokasi otomatis.");
+                btnText.innerText = "Geolocation tidak didukung";
+            }
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtn');
+            const spinner = document.getElementById('btnSpinner');
+            const submitText = submitBtn.querySelector('span');
+            const submitIcon = submitBtn.querySelector('.fa-whatsapp');
+
+            submitBtn.disabled = true;
+            spinner.style.display = 'block';
+            submitText.innerText = 'Memproses Booking...';
+            submitIcon.style.display = 'none';
+
+            const name = document.getElementById('fullName').value;
+            const pickup = document.getElementById('pickupAddress').value;
+            const destination = document.getElementById('destinationAddress').value;
+            const date = document.getElementById('departureDate').value;
+            const time = document.getElementById('pickupTime').value;
+            const passengers = document.getElementById('passengerCount').value;
+            const luggage = document.getElementById('luggageCount').value;
+            const seat = document.getElementById('seatPreference').value;
+            let notes = document.getElementById('additionalNotes').value;
+            
+            if(!notes.trim()) {
+                notes = "-";
+            }
+
+            const formattedDate = date.split('-').reverse().join('/');
+            const adminPhoneNumber = "6289669526911";
+
+            const messageText = 
+`Hi Independent, ini form booking saya mohon bantu konfirmasi lanjutannya ya, terimakasih.
+
+Nama: ${name}
+Alamat Jemput: ${pickup}
+Alamat Tujuan: ${destination}
+Tanggal: ${formattedDate}
+Jam Penjemputan: ${time} WIB
+Jumlah Penumpang: ${passengers} Orang
+Jumlah Barang: ${luggage}
+Seat: ${seat}
+Catatan: ${notes}
+Share Lokasi: ${userLocationString}`;
+
+            const encodedMessage = encodeURIComponent(messageText);
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${adminPhoneNumber}&text=${encodedMessage}`;
+
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                spinner.style.display = 'none';
+                submitText.innerText = 'Kirim Booking ke Admin';
+                submitIcon.style.display = 'block';
+
+                window.open(whatsappUrl, '_blank');
+            }, 1500);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('departureDate').setAttribute('min', today);
+        });
+    </script>
+</body>
+</html>
