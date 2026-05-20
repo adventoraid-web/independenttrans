@@ -628,3 +628,20 @@ MOBILE
 .destination-card{
     cursor: pointer;
 }
+
+/* FIX: HERO terlalu besar di mobile (tidak mengubah layout lain) */
+@media (max-width: 768px) {
+
+    .hero-content {
+        padding-top: 90px !important;
+    }
+
+    .hero h1 {
+        font-size: 2rem !important;
+        line-height: 1.3;
+    }
+
+    .hero p {
+        font-size: 1rem !important;
+    }
+}
