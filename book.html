@@ -466,6 +466,14 @@
                         <i class="fa-solid fa-user"></i>
                     </div>
                 </div>
+                <!-- 1. Nama Lengkap -->
+                <div class="form-group full-width">
+                    <label for="fullName">Nomor Hp/ Whatsapp</label>
+                    <div class="input-wrapper">
+                        <input type="tel" id="phoneNumber" class="form-control" placeholder="Masukkan Nomor Yang Bisa Dihubungi" required>
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                </div>
 
                 <!-- 2. Alamat Jemput -->
                 <div class="form-group full-width">
@@ -625,6 +633,7 @@
             submitIcon.style.display = 'none';
 
             const name = document.getElementById('fullName').value;
+            const phone = document.getElementById('phoneNumber').value;
             const pickup = document.getElementById('pickupAddress').value;
             const destination = document.getElementById('destinationAddress').value;
             const date = document.getElementById('departureDate').value;
@@ -645,6 +654,7 @@
 `Hi Independent, ini form booking saya mohon bantu konfirmasi lanjutannya ya, terimakasih.
 
 👤 Nama: ${name}
+📞 No. HP: ${phone}
 📍 Jemput: ${pickup}
 🎯 Tujuan: ${destination}
 📅 Tanggal: ${formattedDate}
@@ -655,8 +665,7 @@
 📝 Catatan: ${notes}
 
 📍 Lokasi: ${userLocationString}
-
-🌐 www.indepndenttrans.web.id`;
+   www.indepndenttrans.web.id`;
 
             const encodedMessage = encodeURIComponent(messageText);
             const whatsappUrl = `https://api.whatsapp.com/send?phone=${adminPhoneNumber}&text=${encodedMessage}`;
